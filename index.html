@@ -1,9 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body></body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./popzy.css" />
+  </head>
+  <body>
+    <!-- Modal -->
+
+    <main>
+      <button id="open-Modal-1" class="btn">Open Modal 1</button>
+      <button id="open-Modal-2" class="btn">Open Modal 2</button>
+      <p>
+        voluptates ut odit et expedita. Voluptatem sequi optio id at, nisi dolor
+        sapiente iusto animi dolores. Voluptatibus nisi culpa velit nemo sint
+        quisquam error esse, ratione id doloremque ex laboriosam minus et quo
+        accusamus unde nobis sunt eos deleniti non impedit fugit. Qui eaque
+        suscipit iste ipsum deleniti voluptatum obcaecati quas vero veritatis
+        labore, id voluptas molestias sequi optio laborum? Culpa expedita sed
+        porro corporis ex provident! Totam!
+      </p>
+    </main>
+
+    <template id="modal-1">
+      <h1>Modal 1</h1>
+      <button id="open-Modal-2" class="btn" onclick="modal2.open()">
+        Open Modal 2
+      </button>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam commodi
+        quidem alias cupiditate praesentium accusamus provident nesciunt ab modi
+        asperiores?
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae rem
+        porro magnam? Nostrum quae odio illum, impedit harum enim fugiat quia
+        maxime cupiditate. Sit veritatis reiciendis sed nisi repudiandae
+        consectetur!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio vero
+        possimus ex rem itaque neque quaerat nesciunt! Vero enim repellat
+        ratione quidem aperiam! Dolor quae esse dolorum consequatur! Amet
+        exercitationem illo tempora ducimus, eos reiciendis totam perspiciatis.
+        Nemo totam sed deserunt repellat doloribus. Velit minima blanditiis
+        accusamus ad molestiae sint, dolores nulla dicta quis iusto, optio
+        delectus rerum, nesciunt necessitatibus! Dolorem ipsam similique
+        doloremque quaerat velit esse unde sit vel hic iure voluptate laboriosam
+        ipsum est eveniet quas ducimus blanditiis amet, incidunt dolor? Numquam,
+        fugit eum molestias illum rem ea rerum facilis debitis ducimus
+        consequuntur sapiente totam nam laboriosam vitae sed dolores atque autem
+        corporis voluptatibus? Nesciunt quam voluptatem tenetur iste voluptas
+        ab, similique excepturi officia distinctio ex minima, dolor ut maxime?
+        Provident consequuntur natus reprehenderit iure aut ipsum perspiciatis
+        modi consectetur doloribus obcaecati fuga, asperiores eius? Recusandae
+        quos dolore quibusdam vitae molestias asperiores dolorem ipsum. Facilis
+        voluptates odit earum rerum odio blanditiis ea minus nihil non quidem
+        neque, commodi quasi dolor sequi in, numquam veritatis repellat qui,
+        sint maiores nisi laboriosam doloremque. Doloremque quisquam
+        perspiciatis illum ratione cumque sit ducimus, itaque vitae quaerat.
+        Inventore voluptas recusandae, laborum aperiam eius dolore maxime
+        debitis, quam sunt velit commodi blanditiis quibusdam sequi magni modi.
+        Fugit sapiente voluptates repellat? Ducimus sint impedit tempora cum
+        minima numquam delectus ipsa recusandae rem id necessitatibus quia
+        cumque, voluptas repellat nam est minus nesciunt odit accusantium ad?
+        Sint asperiores sit praesentium numquam libero labore non delectus
+        magnam odio, exercitationem.
+      </p>
+    </template>
+    <template id="modal-2">
+      <form action="" id="login-form">
+        <input
+          type="email"
+          name=""
+          id="email"
+          placeholder="Enter email"
+          autocomplete="off"
+        />
+        <input
+          type="password"
+          name=""
+          id="password"
+          placeholder="Enter password"
+        />
+        <button id="submit-form" class="btn">Login</button>
+      </form>
+    </template>
+
+    <script src="./popzy.js"></script>
+  </body>
 </html>

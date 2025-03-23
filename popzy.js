@@ -12,6 +12,8 @@ function Popzy(options = {}) {
 
     // ID popzy
     this.template = document.querySelector(`#${this.opt.templateId}`);
+    console.log(this.template.content);
+    
 
     // Biến lưu độ rộng thanh cuộn
     let _scrollBarWidth;
@@ -121,7 +123,7 @@ Popzy.prototype.open = function () {
         window.innerWidth - document.documentElement.clientWidth;
     const hasScrollbar = scrollbarWidth > 0;
     if (hasScrollbar) {
-        document.body.classList.add("popzy__no-scroll");
+        document.body.classList.add("popzy__no--scroll");
         document.body.style.paddingRight = this._getScrollBarWidth() + "px";
     }
 
