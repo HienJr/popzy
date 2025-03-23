@@ -17,5 +17,9 @@
     "bugs": {
         "url": "https://github.com/HienJr/popzy/issues"
     },
-    "homepage": "https://github.com/HienJr/popzy#readme"
+    "homepage": "https://github.com/HienJr/popzy#readme",
+    "devDependencies": {
+        "csso-cli": "^4.0.2",
+        "terser": "^5.39.0"
+    }
 }

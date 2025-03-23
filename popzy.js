@@ -1,5 +1,5 @@
-Modal.elements = [];
-function Modal(options = {}) {
+Popzy.elements = [];
+function Popzy(options = {}) {
     this.opt = Object.assign(
         {
             closeMethods: ["button", "overlay", "escape"],
@@ -10,13 +10,13 @@ function Modal(options = {}) {
         options
     );
 
-    // ID modal
+    // ID popzy
     this.template = document.querySelector(`#${this.opt.templateId}`);
 
     // Biến lưu độ rộng thanh cuộn
     let _scrollBarWidth;
 
-    // Kiểm tra cách các cách đóng modal
+    // Kiểm tra cách các cách đóng popzy
     this._allowButtonClose = this.opt.closeMethods.includes("button");
     this._allowBackdropClose = this.opt.closeMethods.includes("overlay");
     this._allowEscapeClose = this.opt.closeMethods.includes("escape");
@@ -26,7 +26,7 @@ function Modal(options = {}) {
     this._handleEscape = this._handleEscape.bind(this);
 }
 
-Modal.prototype._getScrollBarWidth = function () {
+Popzy.prototype._getScrollBarWidth = function () {
     if (this._scrollBarWidth) return this._scrollBarWidth;
     // tạo thẻ div để tính độ rộng
     const div = document.createElement("div");
@@ -46,11 +46,11 @@ Modal.prototype._getScrollBarWidth = function () {
     return this._scrollBarWidth; // Trả về kết quả tính
 };
 
-Modal.prototype._build = function () {
+Popzy.prototype._build = function () {
     // Clone lại content để không sao chép lại event
     const content = this.template.content.cloneNode(true);
 
-    // Tạo thẻ backdrop(thẻ nền ở dưới modal) và add class
+    // Tạo thẻ backdrop(thẻ nền ở dưới popzy) và add class
     this._backdrop = document.createElement("div");
     this._backdrop.className = "popzy__backdrop";
 
@@ -65,7 +65,7 @@ Modal.prototype._build = function () {
         }
     });
 
-    // Tạo, thêm, xử lý nút đóng modal
+    // Tạo, thêm, xử lý nút đóng popzy
     if (this._allowButtonClose) {
         const closeBtn = this._createButton("&times;", "popzy__close", () =>
             this.close()
@@ -73,22 +73,22 @@ Modal.prototype._build = function () {
         container.append(closeBtn);
     }
 
-    // Tạo thẻ bao bọc nội dung modal và thêm class
-    const modalContent = document.createElement("div");
-    modalContent.className = "popzy__content";
+    // Tạo thẻ bao bọc nội dung popzy và thêm class
+    const popzyContent = document.createElement("div");
+    popzyContent.className = "popzy__content";
 
-    // Thêm nội dung vào trong modal và append các thẻ vào theo thứ tự cấu trúc
-    modalContent.append(content);
-    container.append(modalContent);
+    // Thêm nội dung vào trong popzy và append các thẻ vào theo thứ tự cấu trúc
+    popzyContent.append(content);
+    container.append(popzyContent);
 
     if (this.opt.footer) {
-        this._modalFooter = document.createElement("div");
-        this._modalFooter.className = "popzy__footer";
+        this._popzyFooter = document.createElement("div");
+        this._popzyFooter.className = "popzy__footer";
 
         this._renderFooterContent();
         this._renderFooterButtons();
 
-        container.append(this._modalFooter);
+        container.append(this._popzyFooter);
     }
 
     this._backdrop.append(container);
@@ -96,8 +96,8 @@ Modal.prototype._build = function () {
     return this._backdrop;
 };
 
-Modal.prototype.open = function () {
-    Modal.elements.push(this);
+Popzy.prototype.open = function () {
+    Popzy.elements.push(this);
 
     // Kiểm tra id truyền vào có hợp lệ hay không
     if (!this.template) {
@@ -105,7 +105,7 @@ Modal.prototype.open = function () {
         return;
     }
 
-    // Kiểm tra modal đã bật trước đó chưa
+    // Kiểm tra popzy đã bật trước đó chưa
     if (!this._backdrop) {
         this._build();
     }
@@ -116,7 +116,7 @@ Modal.prototype.open = function () {
     }, 0);
 
     // Kiểm tra nội dung chính trong web có thanh cuộn hay không để thêm padding-right vào khi
-    // modal bật tránh làm giật trang web
+    // popzy bật tránh làm giật trang web
     const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
     const hasScrollbar = scrollbarWidth > 0;
@@ -125,7 +125,7 @@ Modal.prototype.open = function () {
         document.body.style.paddingRight = this._getScrollBarWidth() + "px";
     }
 
-    // Đóng modal khi bấm ra ngoài modal
+    // Đóng popzy khi bấm ra ngoài popzy
     if (this._allowBackdropClose) {
         this._backdrop.onclick = (e) => {
             if (e.target === this._backdrop) {
@@ -134,7 +134,7 @@ Modal.prototype.open = function () {
         };
     }
 
-    // Đóng modal khi bấm nút escape
+    // Đóng popzy khi bấm nút escape
     if (this._allowEscapeClose) {
         document.addEventListener("keydown", this._handleEscape);
     }
@@ -145,32 +145,32 @@ Modal.prototype.open = function () {
     return this._backdrop;
 };
 
-Modal.prototype._setFooterContent = function (html) {
+Popzy.prototype._setFooterContent = function (html) {
     this._footerContent = html;
     this._renderFooterContent();
 };
 
-Modal.prototype.addFooterButton = function (title, cssClass, callback) {
+Popzy.prototype.addFooterButton = function (title, cssClass, callback) {
     const button = this._createButton(title, cssClass, callback);
     this._footerButton.push(button);
     this._renderFooterButtons();
 };
 
-Modal.prototype._renderFooterContent = function () {
-    if (this._modalFooter && this._footerContent) {
-        this._modalFooter.innerHTML = this._footerContent;
+Popzy.prototype._renderFooterContent = function () {
+    if (this._popzyFooter && this._footerContent) {
+        this._popzyFooter.innerHTML = this._footerContent;
     }
 };
 
-Modal.prototype._renderFooterButtons = function () {
-    if (this._modalFooter) {
+Popzy.prototype._renderFooterButtons = function () {
+    if (this._popzyFooter) {
         this._footerButton.forEach((button) => {
-            this._modalFooter.append(button);
+            this._popzyFooter.append(button);
         });
     }
 };
 
-Modal.prototype._createButton = function (title, cssClass, callback) {
+Popzy.prototype._createButton = function (title, cssClass, callback) {
     const button = document.createElement("button");
     button.className = cssClass;
     button.innerHTML = title;
@@ -179,42 +179,42 @@ Modal.prototype._createButton = function (title, cssClass, callback) {
     return button;
 };
 
-Modal.prototype.setModalContent = function (html) {
+Popzy.prototype.setPopzyContent = function (html) {
     this._footerContent = html;
-    if (this._modalFooter) {
-        this._modalFooter.innerHTML = html;
+    if (this._popzyFooter) {
+        this._popzyFooter.innerHTML = html;
     }
 };
 
-// Hàm xử lý khi đóng modal bằng nút escape
-Modal.prototype._handleEscape = function (e) {
-    const lastModal = Modal.elements[Modal.elements.length - 1];
+// Hàm xử lý khi đóng popzy bằng nút escape
+Popzy.prototype._handleEscape = function (e) {
+    const lastPopzy = Popzy.elements[Popzy.elements.length - 1];
 
-    if (e.key === "Escape" && this === lastModal) {
+    if (e.key === "Escape" && this === lastPopzy) {
         this.close();
     }
 };
 
-Modal.prototype._onTransitionEnd = function (callback) {
+Popzy.prototype._onTransitionEnd = function (callback) {
     this._backdrop.ontransitionend = (e) => {
         if (e.propertyName !== "transform") return;
         if (typeof callback === "function") callback();
     };
 };
 
-// Hàm xử lý đóng modal
-Modal.prototype.close = function (destroy = this.opt.destroyOnclose) {
-    Modal.elements.pop();
+// Hàm xử lý đóng popzy
+Popzy.prototype.close = function (destroy = this.opt.destroyOnclose) {
+    Popzy.elements.pop();
     this._backdrop.classList.remove("popzy__show");
 
     this._onTransitionEnd(() => {
         if (this._backdrop && destroy) {
             this._backdrop.remove();
             this._backdrop = null;
-            this._modalFooter = null;
+            this._popzyFooter = null;
         }
 
-        if (!Modal.elements.length) {
+        if (!Popzy.elements.length) {
             document.body.classList.remove("popzy__no--scroll");
             document.body.style.paddingRight = "";
         }
@@ -228,7 +228,7 @@ Modal.prototype.close = function (destroy = this.opt.destroyOnclose) {
     });
 };
 
-// Hàm đóng modal
-Modal.prototype.destroy = function () {
+// Hàm đóng popzy
+Popzy.prototype.destroy = function () {
     this.close(true);
 };
