@@ -12,7 +12,6 @@ function Popzy(options = {}) {
 
     // ID popzy
     this.template = document.querySelector(`#${this.opt.templateId}`);
-    console.log(this.template.content);
     
 
     // Biến lưu độ rộng thanh cuộn
