@@ -12,6 +12,7 @@
 
 .popzy__backdrop {
     position: fixed;
+    z-index: 999;
     background: rgba(0, 0, 0, 0.6);
     inset: 0;
     display: flex;
